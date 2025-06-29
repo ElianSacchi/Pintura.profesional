@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pintura Profesional en General</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Header y Navigation */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            animation: slideIn 1s ease-out;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+            animation: bounce 2s infinite;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-menu a:hover {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px 20px;
+        }
+
+        /* Secciones */
+        .section {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section h1, .section h2 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .section h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        .section p {
+            margin-bottom: 1.5rem;
+            color: #555;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        /* Grid Layout */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .grid-item {
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Flex Layout */
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .flex-item {
+            flex: 1;
+            min-width: 250px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .flex-item:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.05);
+        }
+
+        /* Imágenes */
+        .section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            margin: 1rem 0;
+            transition: transform 0.3s ease;
+        }
+
+        .section img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Video */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin: 2rem 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 15px;
+        }
+
+        /* Listas */
+        ul, ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+            color: #555;
+        }
+
+        /* Tablas */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-radius: 20px 20px 0 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .container {
+                padding: 120px 10px 20px;
+            }
+
+            .section {
+                padding: 2rem 1.5rem;
+            }
+
+            .section h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Botones animados */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            margin: 10px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🎨 Pintura Profesional</div>
+            <ul class="nav-menu">
+                <li><a href="#" onclick="showSection('home')">Inicio</a></li>
+                <li><a href="#" onclick="showSection('nosotros')">Nosotros</a></li>
+                <li><a href="#" onclick="showSection('servicios')">Servicios</a></li>
+                <li><a href="#" onclick="showSection('consejos')">Consejos</a></li>
+                <li><a href="#" onclick="showSection('galeria')">Galería</a></li>
+                <li><a href="#" onclick="showSection('contacto')">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- HOME -->
+        <section id="home" class="section active">
+            <h1>Pintura Profesional en General</h1>
+            <div class="flex-container">
+                <div class="flex-item">
+                    <h3>🏠 Residencial</h3>
+                    <p>Transformamos tu hogar con acabados perfectos y duraderos</p>
+                </div>
+                <div class="flex-item">
+                    <h3>🏢 Comercial</h3>
+                    <p>Soluciones profesionales para espacios comerciales e industriales</p>
+                </div>
+                <div class="flex-item">
+                    <h3>🏭 Industrial</h3>
+                    <p>Pintura especializada para estructuras y maquinaria industrial</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin: 3rem 0;">
+                <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=800&h=400&fit=crop" alt="Equipo de pintura profesional trabajando">
+                <p><strong>Más de 10 años transformando espacios con calidad y compromiso</strong></p>
+            </div>
+
+            <div class="grid-container">
+                <div class="grid-item">
+                    <h3>✅ Calidad Garantizada</h3>
+                    <p>Utilizamos materiales de primera calidad y técnicas profesionales probadas</p>
+                </div>
+                <div class="grid-item">
+                    <h3>⏰ Puntualidad</h3>
+                    <p>Cumplimos con los plazos acordados sin comprometer la calidad</p>
+                </div>
+                <div class="grid-item">
+                    <h3>💰 Precios Competitivos</h3>
+                    <p>Ofrecemos las mejores tarifas del mercado con financiación disponible</p>
+                </div>
+                <div class="grid-item">
+                    <h3>🛡️ Garantía Total</h3>
+                    <p>Respaldamos nuestro trabajo con garantía completa en mano de obra</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOSOTROS -->
+        <section id="nosotros" class="section">
+            <h2>Sobre Nosotros</h2>
+            <div class="flex-container">
+                <div style="flex: 2;">
+                    <p>Somos un equipo familiar dedicado a la pintura profesional con más de <strong>10 años de trayectoria</strong> en el rubro. Trabajo junto a mi compañero <strong>Matías</strong> y mi papá <strong>Sebastián</strong>, formando un equipo sólido y comprometido con la excelencia.</p>
+                    
+                    <p>Nuestra experiencia abarca desde pequeños retoques hasta grandes proyectos comerciales e industriales. Nos especializamos en brindar un servicio integral que incluye asesoramiento personalizado, preparación de superficies, aplicación profesional y acabados de alta calidad.</p>
+                    
+                    <p>La confianza que nos han brindado nuestros clientes a lo largo de estos años nos ha permitido crecer y perfeccionar nuestras técnicas, manteniéndonos siempre actualizados con las últimas tendencias y tecnologías del sector.</p>
+
+                    <h3>Nuestros Valores:</h3>
+                    <ul>
+                        <li><strong>Profesionalismo:</strong> Cada proyecto se ejecuta con el máximo cuidado y atención al detalle</li>
+                        <li><strong>Honestidad:</strong> Presupuestos claros y transparentes sin sorpresas</li>
+                        <li><strong>Compromiso:</strong> Cumplimos con los plazos y la calidad prometida</li>
+                        <li><strong>Tradición familiar:</strong> El conocimiento se transmite de generación en generación</li>
+                    </ul>
+                </div>
+                <div style="flex: 1;">
+                    <img src="https://images.unsplash.com/photo-1581783898377-1c85bf937427?w=400&h=500&fit=crop" alt="Equipo de trabajo familiar">
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Integrante</th>
+                        <th>Rol</th>
+                        <th>Especialidad</th>
+                        <th>Experiencia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sebastián (Papá)</td>
+                        <td>Maestro Principal</td>
+                        <td>Pintura Industrial</td>
+                        <td>15+ años</td>
+                    </tr>
+                    <tr>
+                        <td>Matías</td>
+                        <td>Socio y Especialista</td>
+                        <td>Pintura Decorativa</td>
+                        <td>8 años</td>
+                    </tr>
+                    <tr>
+                        <td>Yo</td>
+                        <td>Coordinador General</td>
+                        <td>Gestión y Acabados</td>
+                        <td>10 años</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- SERVICIOS -->
+        <section id="servicios" class="section">
+            <h2>Nuestros Servicios</h2>
+            
+            <div class="grid-container">
+                <div class="grid-item">
+                    <h3>🏠 Pintura Residencial</h3>
+                    <ul>
+                        <li>Interiores y exteriores</li>
+                        <li>Preparación de paredes</li>
+                        <li>Reparación de grietas</li>
+                        <li>Aplicación de primers</li>
+                        <li>Acabados mate, satinado y brillante</li>
+                    </ul>
+                </div>
+                
+                <div class="grid-item">
+                    <h3>🏢 Pintura Comercial</h3>
+                    <ul>
+                        <li>Oficinas y locales comerciales</li>
+                        <li>Restaurantes y hoteles</li>
+                        <li>Centros comerciales</li>
+                        <li>Pintura ignífuga</li>
+                        <li>Señalización y demarcación</li>
+                    </ul>
+                </div>
+                
+                <div class="grid-item">
+                    <h3>🏭 Pintura Industrial</h3>
+                    <ul>
+                        <li>Estructuras metálicas</li>
+                        <li>Pintura anticorrosiva</li>
+                        <li>Tratamientos especiales</li>
+                        <li>Pintura de maquinaria</li>
+                        <li>Recubrimientos protectores</li>
+                    </ul>
+                </div>
+                
+                <div class="grid-item">
+                    <h3>🔧 Servicios Adicionales</h3>
+                    <ul>
+                        <li>Impermeabilización</li>
+                        <li>Tratamiento anti-hongos</li>
+                        <li>Limpieza de fachadas</li>
+                        <li>Mantenimiento preventivo</li>
+                        <li>Asesoramiento en colores</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 3rem 0;">
+                <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&h=400&fit=crop" alt="Variedad de herramientas de pintura profesional">
+            </div>
+        </section>
+
+        <!-- CONSEJOS Y VIDEO -->
+        <section id="consejos" class="section">
+            <h2>Cuidados y Consejos para las Paredes</h2>
+            
+            <p>Mantener las paredes en perfecto estado es fundamental para preservar la belleza y durabilidad de la pintura. Aquí te compartimos algunos consejos profesionales y un video educativo.</p>
+
+            <div class="video-container">
+                 <iframe 
+      src="https://www.youtube.com/embed/c9x3o8OQXIs" 
+      title="Video de trabajos de pintura"
+      style="position:absolute;top:0;left:0;width:100%;height:100%;"
+      frameborder="0"
+      allowfullscreen
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+    </iframe>
+            </div>
+
+            <div class="grid-container">
+                <div class="grid-item">
+                    <h3>🧽 Limpieza Regular</h3>
+                    <p>Limpia las paredes con un paño húmedo y detergente suave. Evita productos abrasivos que puedan dañar la pintura.</p>
+                </div>
+                
+                <div class="grid-item">
+                    <h3>💧 Control de Humedad</h3>
+                    <p>Mantén una ventilación adecuada para evitar la acumulación de humedad que puede causar descascaramiento.</p>
+                </div>
+                
+                <div class="grid-item">
+                    <h3>🌡️ Temperatura Estable</h3>
+                    <p>Evita cambios bruscos de temperatura que pueden causar dilatación y contracción de las superficies.</p>
+                </div>
+                
+                <div class="grid-item">
+                    <h3>🔍 Inspección Periódica</h3>
+                    <p>Revisa regularmente en busca de grietas, manchas o descascaramiento para actuar a tiempo.</p>
+                </div>
+            </div>
+
+            <h3>Consejos Profesionales:</h3>
+            <ol>
+                <li><strong>Preparación es clave:</strong> Una buena preparación de la superficie garantiza un 80% del éxito del trabajo</li>
+                <li><strong>Calidad de materiales:</strong> Invertir en pintura de calidad ahorra dinero a largo plazo</li>
+                <li><strong>Condiciones climáticas:</strong> No pintes en días muy húmedos o con mucho viento</li>
+                <li><strong>Técnica adecuada:</strong> Aplica la pintura en capas uniformes y respeta los tiempos de secado</li>
+                <li><strong>Mantenimiento preventivo:</strong> Un retoque a tiempo evita repintados completos</li>
+            </ol>
+        </section>
+
+        <!-- GALERÍA -->
+        <section id="galeria" class="section">
+            <h2>Galería de Trabajos</h2>
+            
+            <div class="grid-container">
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop" alt="Sala pintada en colores modernos">
+                    <h3>Proyecto Residencial</h3>
+                    <p>Renovación completa de living y comedor con acabados modernos</p>
+                </div>
+                
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop" alt="Oficina moderna pintada">
+                    <h3>Oficina Corporativa</h3>
+                    <p>Espacio de trabajo moderno con colores corporativos</p>
+                </div>
+                
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&h=300&fit=crop" alt="Cocina con pintura especial">
+                    <h3>Cocina Especializada</h3>
+                    <p>Pintura resistente a humedad y alta temperatura</p>
+                </div>
+                
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&h=300&fit=crop" alt="Fachada exterior pintada">
+                    <h3>Fachada Exterior</h3>
+                    <p>Renovación completa de fachada con pintura weathershield</p>
+                </div>
+                
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop" alt="Habitación infantil colorida">
+                    <h3>Habitación Infantil</h3>
+                    <p>Diseño lúdico y seguro con pinturas no tóxicas</p>
+                </div>
+                
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=400&h=300&fit=crop" alt="Local comercial pintado">
+                    <h3>Local Comercial</h3>
+                    <p>Ambiente profesional que refleja la identidad de marca</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 3rem 0;">
+                <h3>Técnicas Profesionales</h3>
+                <div class="flex-container">
+                    <div class="flex-item">
+                        <h4>Preparación Integral</h4>
+                        <p>Lijado, masillado y preparación perfecta de superficies</p>
+                    </div>
+                    <div class="flex-item">
+                        <h4>Aplicación Técnica</h4>
+                        <p>Uso de rodillos, pinceles y equipos profesionales</p>
+                    </div>
+                    <div class="flex-item">
+                        <h4>Acabados Premium</h4>
+                        <p>Terminaciones lisas y uniformes garantizadas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACTO -->
+        <section id="contacto" class="section">
+            <h2>Contacto</h2>
+            
+            <div class="flex-container">
+                <div style="flex: 1;">
+                    <h3>📞 Información de Contacto</h3>
+                    <p><strong>Teléfono:</strong> +54 9 2657-317599</p>
+                    <p><strong>Email:</strong> elian.sacchi@gmail.com</p>
+                    <p><strong>Ubicación:</strong> Villa Mercedes, San Luis</p>
+                    <p><strong>Horarios:</strong> Lunes a Viernes 8:00 - 18:00</p>
+                    <p><strong>Sábados:</strong> 8:00 - 14:00</p>
+                    
+                    <h3>🌟 ¿Por qué elegirnos?</h3>
+                    <ul>
+                        <li>Presupuesto gratuito sin compromiso</li>
+                        <li>Asesoramiento personalizado</li>
+                        <li>Materiales de primera calidad</li>
+                        <li>Equipo familiar con tradición</li>
+                        <li>Garantía en todos nuestros trabajos</li>
+                        <li>Financiación disponible</li>
+                    </ul>
+                </div>
+                
+                <div style="flex: 1;">
+                    <img src="https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=500&h=400&fit=crop" alt="Equipo de pintura profesional">
+                    
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a href="#" class="btn">📞 Llamar Ahora</a>
+                        <a href="#" class="btn">✉️ Enviar Email</a>
+                        <a href="#" class="btn">💬 WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin: 3rem 0; padding: 2rem; background: linear-gradient(135deg, #f5f7fa, #c3cfe2); border-radius: 15px; text-align: center;">
+                <h3>🎯 Solicita tu Presupuesto Gratuito</h3>
+                <p>Contáctanos para una evaluación gratuita de tu proyecto. Te brindaremos un presupuesto detallado sin compromiso y asesoramiento profesional personalizado.</p>
+                <p><strong>¡Transformamos tu espacio con la calidad que mereces!</strong></p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Pintura Profesional en General - Más de 10 años de experiencia</p>
+        <p>Sebastián, Matías y equipo - Villa Mercedes, San Luis</p>
+        <p>Sitio desarrollado como trabajo práctico académico</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // Ocultar todas las secciones
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Mostrar la sección seleccionada
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Scroll hacia arriba
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // Animación adicional para elementos cuando aparecen
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationDelay = '0.2s';
+                        entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                    }
+                });
+            });
+
+            const animatedElements = document.querySelectorAll('.grid-item, .flex-item, img');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+
+        // Efecto parallax suave en el scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('body');
+            const speed = scrolled * 0.1;
+            parallax.style.backgroundPosition = `center ${speed}px`;
+        });
+    </script>
+</body>
+</html>
